@@ -5,7 +5,7 @@ config = {
         day: 20,
         hour: 12,
         minute: 12,
-        second: 00
+        second: 0
     }
 };
 
