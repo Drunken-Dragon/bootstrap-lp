@@ -63,12 +63,12 @@ function countdown() {
 
 function utils() {
     $('[data-toggle="tooltip"]').tooltip();
-    $('#checkout').on('click', '.box.shipping-method, .box.payment-method', function (e) {
+    $('#checkout').on('click', '.box.shipping-method, .box.payment-method', function () {
         var radio = $(this).find(':radio');
         radio.prop('checked', true);
     });
 
-    $('.box.clickable').on('click', function (e) {
+    $('.box.clickable').on('click', function () {
         window.location = $(this).find('a').attr('href');
     });
 
