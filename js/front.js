@@ -1,10 +1,10 @@
 config = {
     countdown: {
-        year: 2017,
-        month: 10,
-        day: 20,
-        hour: 12,
-        minute: 12,
+        year: 2018,
+        month: 1,
+        day: 1,
+        hour: 1,
+        minute: 1,
         second: 0
     }
 };
