@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+
+    if (empty($_SESSION['key'])) {
+        $_SESSION['key'] = bin2hex(random_bytes(32));
+    }
+
+    $csrf = hash_hmac('sha256', 'this is the security token for task number five', $_SESSION['key']);
+
+    $_SESSION['csrf'] = hash_hmac('sha256', 'this is the security token for task number five', $_SESSION['key']);
+ ?>
 <html>
 <head>
     <meta charset="utf-8">
@@ -157,7 +167,7 @@
                 <p class="h2 text-center">FOR MY FREE WEBINAR</p>
                 <p class="text-center header-bottom">SIGN UP NOW!</p>
                 <div class="row justify-content-center">
-                    <form class="" action="formularz.php" method="post">
+                    <form class="" action="formularz.php" method="post" accept-charset="utf8">
                         <div class="form-group">
                             <label for="nameSurname"></label>
                             <input type="text" class="form-control ghost rounded-0" id="nameSurname"
@@ -168,9 +178,10 @@
                             <label for="phone"></label>
                             <input type="text" class="form-control ghost rounded-0" id="phone" placeholder="Phone number"
                                    name="phone">
+                            <input type="hidden" name="csrf" value="<?= $csrf ?>">
                         </div>
                         <div class="row justify-content-center">
-                            <button type="submit" class="button2">REGISTER NOW</button>
+                            <button type="submit" name="submit" class="button2">REGISTER NOW</button>
                         </div>
                     </form>
                 </div>
