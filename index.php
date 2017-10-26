@@ -1,4 +1,10 @@
 <?php
+    require_once("session.php");
+    if(checkSession())
+    {
+        die(header("Location: login.php"));
+    }
+
     session_start();
 
     if (empty($_SESSION['key'])) {
@@ -23,6 +29,9 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
+                <form method="post">
+                    <input type="submit" class="btn btn-danger" name="logout" value="LOGOUT"/>
+                </form>
                 <p class="header-top text-center">SIGN UP</p>
                 <p class="h1 text-center">FOR MY FREE WEBINAR</p>
                 <p class="h5 text-center">WHEN WE START</p>
@@ -198,3 +207,13 @@
     <script src="js/main.js" type="text/javascript"></script>
 </body>
 </html>
+<?php
+    function sessionClose()
+    {
+        unset($_SESSION['username']);
+        header("Location: login.php");
+    }
+    if(array_key_exists('logout',$_POST)){
+        sessionClose();
+    }
+?>

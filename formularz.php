@@ -47,7 +47,7 @@
 ?>
     <p><strong><?= $empty_name;?></strong></p><br>
     <p><strong><?= $empty_email;?></strong>
-        <strong><?= $email_error;?></strong></p><br>
+      <strong><?= $email_error;?></strong></p><br>
     <p><strong><?= $empty_phone;?></strong></p><br>
 
 <?php
