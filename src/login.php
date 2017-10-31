@@ -16,7 +16,7 @@
         if (password_verify($password, $data[0]['password']))
         {
             $_SESSION['username'] = ($data[0]['name']);
-            header("location: ../index.php");
+            header("location: /landing");
         } else
             $msg = "Please check input data";
     }
@@ -39,7 +39,7 @@
 
                 <?php if ($msg != "") echo $msg . "<br><br>";?>
 
-                <form method="post" action="login.php">
+                <form method="post" action="">
                     <input class="form-control" type="text" name="name" placeholder="User name"><br>
                     <input class="form-control" type="password" name="password" placeholder="User password"><br>
                     <input class="btn btn-primary" type="submit" name="submit" value="Sign in"><br>

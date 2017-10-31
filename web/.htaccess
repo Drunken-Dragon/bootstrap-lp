@@ -5,4 +5,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 #RewriteRule ^([^\.]+)$ $1.php [NC,L]
 #RewriteRule ^([^\.]+)$ $1.html [NC,L]
-RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]
+RewriteRule !.*\.php$ index.php [QSA,L]

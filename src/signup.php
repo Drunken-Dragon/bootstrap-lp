@@ -51,14 +51,14 @@
 
                 <?php if ($msg != "") echo $msg . "<br><br>";?>
 
-                <form method="post" action="signup.php">
+                <form method="post" action="/signup">
                     <input class="form-control" type="text" name="name" placeholder="User name"><br>
                     <input class="form-control" type="password" name="password" minlength="8" placeholder="User password"><br>
                     <input class="form-control" type="password" name="cPassword" minlength="8" placeholder="Confirm User password"><br>
                     <input class="btn btn-primary" type="submit" name="submit" value="Sign up"><br><br>
                 </form>
-                <form action="../src/login.php">
-                    <input class="btn btn-primary" type="submit" name="submit" value="Go to sign in"><br>
+                <form method="post" action="/login">
+                    <input class="btn btn-primary" type="submit" name="login" value="Go to sign in"><br>
                 </form>
             </div>
         </div>
