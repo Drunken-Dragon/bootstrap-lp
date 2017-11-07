@@ -1,6 +1,5 @@
 <?php
 include __DIR__ . "/../src/session.php";
-
 switch ($_SERVER['REQUEST_URI']) {
     case '/signup':
         include_once '../src/signup.php';

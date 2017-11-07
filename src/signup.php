@@ -1,37 +1,25 @@
 <?php
-    $msg = "";
-
-    if (isset($_POST['submit']))
-    {
-        $name = $_POST['name'];
-        $password = $_POST['password'];
-        $cPassword = $_POST['cPassword'];
-
-        if ($password != $cPassword)
-            $msg = "Please check your password!";
-        else
-        {
-            $hash = password_hash($password, PASSWORD_BCRYPT);
-
-            try
-            {
-                $pdo = new PDO('mysql:host=localhost;dbname=landing_form_2;charset=utf8','root','root');
-
-                $db_update = $pdo->prepare("INSERT INTO users (name, password)
-                VALUES (:name, :password)");
-                $db_update->bindParam(':name', $name);
-                $db_update->bindParam(':password', $hash);
-
-                $db_update->execute();
-
-                $msg = "You have successfully signed up!";
-            }
-            catch(\Throwable $e)
-            {
-                $msg = $e->getMessage();
-            }
-        }
+$msg = "";
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+    $cPassword = $_POST['cPassword'];
+    if ($password != $cPassword) {
+        $msg = "Please check your password!";
+    } else {
+        $hash = password_hash($password, PASSWORD_BCRYPT);
     }
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=landing_form_2;charset=utf8', 'root', 'root');
+        $db_update = $pdo->prepare("INSERT INTO users (name, password) VALUES (:name, :password)");
+        $db_update->bindParam(':name', $name);
+        $db_update->bindParam(':password', $hash);
+        $db_update->execute();
+        $msg = "You have successfully signed up!";
+    } catch (\Throwable $e) {
+        $msg = $e->getMessage();
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -48,9 +36,10 @@
         <div class="row justify-content-center">
             <div class="col-md-6" align="center">
                 <h2>Please sign up</h2>
-
-                <?php if ($msg != "") echo $msg . "<br><br>";?>
-
+                    <?php if ($msg != "") : ?>
+                        <?= $msg ?>
+                        <br><br>
+                    <?php endif; ?>
                 <form method="post" action="/signup">
                     <input class="form-control" type="text" name="name" placeholder="User name"><br>
                     <input class="form-control" type="password" name="password" minlength="8" placeholder="User password"><br>

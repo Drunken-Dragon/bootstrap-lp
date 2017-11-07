@@ -2,14 +2,10 @@
 if (checkSession()) {
     header('Location: /login');
 }
-
-
 if (empty($_SESSION['key'])) {
     $_SESSION['key'] = bin2hex(random_bytes(32));
 }
-
 $csrf = hash_hmac('sha256', 'this is the security token for task number five', $_SESSION['key']);
-
 $_SESSION['csrf'] = hash_hmac('sha256', 'this is the security token for task number five', $_SESSION['key']);
 ?>
 <html>
@@ -22,7 +18,6 @@ $_SESSION['csrf'] = hash_hmac('sha256', 'this is the security token for task num
 </head>
 <body>
 <div class="background-image"></div>
-
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -59,7 +54,6 @@ $_SESSION['csrf'] = hash_hmac('sha256', 'this is the security token for task num
         </div>
     </div>
 </div>
-
 <div class="jumbotron">
     <div class="container">
         <div class="row">
@@ -78,7 +72,6 @@ $_SESSION['csrf'] = hash_hmac('sha256', 'this is the security token for task num
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -87,7 +80,6 @@ $_SESSION['csrf'] = hash_hmac('sha256', 'this is the security token for task num
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row about-me">
         <div class="col-sm-4">
@@ -106,7 +98,6 @@ $_SESSION['csrf'] = hash_hmac('sha256', 'this is the security token for task num
         </div>
     </div>
 </div>
-
 <div class="jumbotron no-margin-bottom">
     <div class="container">
         <div class="row">
@@ -116,7 +107,6 @@ $_SESSION['csrf'] = hash_hmac('sha256', 'this is the security token for task num
             </div>
         </div>
     </div>
-
     <div class="container">
         <div class="row justify-content-center">
             <div class="player-left">
@@ -128,7 +118,6 @@ $_SESSION['csrf'] = hash_hmac('sha256', 'this is the security token for task num
         </div>
     </div>
 </div>
-
 <div class="jumbotron-gray">
     <div class="container">
         <div class="row">
@@ -138,7 +127,6 @@ $_SESSION['csrf'] = hash_hmac('sha256', 'this is the security token for task num
             </div>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
@@ -166,7 +154,6 @@ $_SESSION['csrf'] = hash_hmac('sha256', 'this is the security token for task num
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -194,7 +181,6 @@ $_SESSION['csrf'] = hash_hmac('sha256', 'this is the security token for task num
         </div>
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
@@ -210,7 +196,7 @@ function sessionClose()
     unset($_SESSION['username']);
     header("Location: /login");
 }
-if(array_key_exists('logout',$_POST)){
+if (array_key_exists('logout', $_POST)) {
     sessionClose();
 }
 ?>
