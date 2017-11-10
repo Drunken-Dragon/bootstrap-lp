@@ -1,5 +1,10 @@
 <?php
 include __DIR__ . "/../src/session.php";
+require __DIR__ . '/../vendor/autoload.php';
+
+$dotenv = new Dotenv\Dotenv(__DIR__ . "/../");
+$dotenv->load();
+
 switch ($_SERVER['REQUEST_URI']) {
     case '/signup':
         include_once '../src/signup.php';

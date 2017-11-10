@@ -1,8 +1,12 @@
 <?php
     session_start();
     $msg = "";
+    $dbHost = $_ENV['DB_HOST'];
+    $dbName = $_ENV['DB_NAME_USR'];
+    $userName = $_ENV['DB_USERNAME'];
+    $dbPassword = $_ENV['DB_PASSWORD'];
 if (isset($_POST['submit'])) {
-    $pdo = new PDO('mysql:host=localhost;dbname=landing_form_2;charset=utf8', 'root', 'root');
+    $pdo = new PDO('mysql:host='.$dbHost.';dbname='.$dbName.';charset=utf8', $userName, $dbPassword);
     $name = $_POST['name'];
     $password = $_POST['password'];
     $data = ($pdo->query("SELECT id, password, name FROM users WHERE name = '$name'")->fetchAll());
@@ -31,7 +35,7 @@ if (isset($_POST['submit'])) {
                 <h2>Please sign in</h2>
                     <?php if ($msg != "") : ?>
                         <?= $msg ?>
-                        "<br><br>"
+                        <br><br>
                     <?php endif; ?>
                 <form method="post" action="">
                     <input class="form-control" type="text" name="name" placeholder="User name"><br>
