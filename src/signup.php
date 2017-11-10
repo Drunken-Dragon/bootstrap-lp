@@ -1,19 +1,25 @@
 <?php
 $msg = "";
-$dbHost = $_ENV['DB_HOST'];
-$dbName = $_ENV['DB_NAME_USR'];
-$userName = $_ENV['DB_USERNAME'];
-$dbPassword = $_ENV['DB_PASSWORD'];
+$dbName = getenv('DB_NAME_USR');
+$dbHost = getenv('DB_HOST');
+
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $password = $_POST['password'];
     $cPassword = $_POST['cPassword'];
+
     if ($password != $cPassword) {
         $msg = "Please check your password!";
     } else {
         $hash = password_hash($password, PASSWORD_BCRYPT);
+
         try {
-            $pdo = new PDO('mysql:host='.$dbHost.';dbname='.$dbName.';charset=utf8', $userName, $dbPassword);
+//            $pdo = new PDO('mysql:host='.$dbHost.';dbname='.$dbName.';charset=utf8', $userName, $dbPassword);
+            $pdo = new PDO(
+                'mysql:host='.$dbHost.';dbname='.$dbName.';charset=utf8',
+                getenv('DB_USERNAME'),
+                getenv('DB_PASSWORD')
+            );
             $db_update = $pdo->prepare("INSERT INTO users (name, password) VALUES (:name, :password)");
             $db_update->bindParam(':name', $name);
             $db_update->bindParam(':password', $hash);

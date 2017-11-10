@@ -1,15 +1,19 @@
 <?php
     session_start();
     $msg = "";
-    $dbHost = $_ENV['DB_HOST'];
-    $dbName = $_ENV['DB_NAME_USR'];
-    $userName = $_ENV['DB_USERNAME'];
-    $dbPassword = $_ENV['DB_PASSWORD'];
+    $dbName = getenv('DB_NAME_USR');
+    $dbHost = getenv('DB_HOST');
+
 if (isset($_POST['submit'])) {
-    $pdo = new PDO('mysql:host='.$dbHost.';dbname='.$dbName.';charset=utf8', $userName, $dbPassword);
+    $pdo = new PDO(
+        'mysql:host='.$dbHost.';dbname='.$dbName.';charset=utf8',
+        getenv('DB_USERNAME'),
+        getenv('DB_PASSWORD')
+    );
     $name = $_POST['name'];
     $password = $_POST['password'];
     $data = ($pdo->query("SELECT id, password, name FROM users WHERE name = '$name'")->fetchAll());
+
     if (password_verify($password, $data[0]['password'])) {
         $_SESSION['username'] = ($data[0]['name']);
         header("location: /landing");

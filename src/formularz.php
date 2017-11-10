@@ -49,10 +49,15 @@ if (hash_equals($csrf, $_POST['csrf'])) {
         <strong><?= $email_error;?></strong></p><br>
     <p><strong><?= $empty_phone;?></strong></p><br>
 <?php
-$username = $_ENV['DB_USERNAME'];
-$password = $_ENV['DB_PASSWORD'];
+$dbName = getenv('DB_NAME');
+$dbHost = getenv('DB_HOST');
+
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=landing_form;charset=utf8', $username, $password);
+    $pdo = new PDO(
+        'mysql:host='.$dbHost.';dbname='.$dbName.';charset=utf8',
+        getenv('DB_USERNAME'),
+        getenv('DB_PASSWORD')
+    );
     $db_update = $pdo->prepare("INSERT INTO form_input (name, email, phone)
     VALUES (:name, :email, :phone)");
     $db_update->bindParam(':name', $name);

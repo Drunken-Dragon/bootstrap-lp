@@ -1,9 +1,10 @@
 <?php
 include __DIR__ . "/../src/session.php";
 require __DIR__ . '/../vendor/autoload.php';
+use Symfony\Component\Dotenv\Dotenv;
 
-$dotenv = new Dotenv\Dotenv(__DIR__ . "/../");
-$dotenv->load();
+$dotenv = new Dotenv();
+$dotenv->load(__DIR__ . "/../.env");
 
 switch ($_SERVER['REQUEST_URI']) {
     case '/signup':
